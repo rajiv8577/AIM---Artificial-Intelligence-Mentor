@@ -5,6 +5,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { howItWorks } from "@/data/howItWorks";
 import { testimonial } from "@/data/testimonial";
 import Image from "next/image";
+import { faqs } from "@/data/faqs";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
@@ -135,6 +139,56 @@ export default function Home() {
                 </Card>
               )
             })}
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full py-12 md:py-24 lg:pd-32 bg-background">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-muted-foreground">
+              Find answers to comman questions about our platform
+            </p>
+          </div>
+
+          <div className="max-w-6xl mx-auto">
+            <Accordion type="single" collapsible className="w-full">
+              {faqs.map((item, index) => {
+                return (
+                  <AccordionItem key={index} value={`item-${index}`}>
+                    <AccordionTrigger className="hov-pt">{item.question}</AccordionTrigger>
+                    <AccordionContent>
+                      {item.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                );
+              })}
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full">
+        <div className="mx-auto py-24 gradient rounded-lg">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold tracking-tighter text-primary-foreground sm:text-4xl md:text-5xl">
+              Ready to Accelerate Your Career?
+            </h2>
+            <p className="mx-auto max-w-[600px] text-primary-foreground/80 md:text-xl">
+              Join thousands of professionals who are advacing their careers with AI-powered guidance.
+            </p>
+            <Link href="/dashboard" passHref>
+              <Button
+                size="lg"
+                variant="secondary"
+                className="ht-11 mt-5 animate-bounce hov-pt"
+              >
+                Start Your Journey <ArrowRight className="ml-2 h-4 w-4"/>
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
